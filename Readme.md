@@ -38,15 +38,15 @@ EventPulse is a event management platform built using **FastAPI**. It allows hos
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourname/eventpulse.git
-cd eventpulse
+git clone https://github.com/tanujjjj/EventPulse.git
+cd EventPulse
 
 # Create and activate Conda env (Python 3.11)
 conda create -n eventpulse python=3.11
 conda activate eventpulse
 
 # Install dependencies
-pip install -r app/requirements.txt
+pip install -r requirements.txt
 
 
 # Run server
