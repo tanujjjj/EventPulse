@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bg-white shadow p-4 rounded">
+  <h2 class="text-xl font-bold mb-2 flex items-center">
+    {{ event.title }}
+    {% if event.status == 'Live' %}
+      <span class="ml-2 animate-pulse text-red-600 text-sm font-semibold">🔴 Live</span>
+    {% endif %}
+  </h2>
+  <p class="mb-2">{{ event.description }}</p>
+  <p class="text-sm text-gray-600">📍 {{ event.location }}</p>
+  <p class="text-sm text-gray-600">📅 {{ event.datetime }}</p>
+  <p class="text-sm text-gray-600">🕐 RSVP by {{ event.rsvp_deadline }}</p>
+  <p class="text-sm text-gray-600">🎟 Max attendees: {{ event.max_attendees }}</p>
+  <p class="text-sm text-gray-600">📌 Status: {{ event.status }}</p>
+
+  {% if show_rsvp %}
+    <form method="post" action="/events/{{ event.id }}/rsvp" class="mt-4">
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">✅ RSVP Now</button>
+    </form>
+    {% endif %}
+  {% if show_checkin %}
+    <form method="post" action="/events/{{ event.id }}/checkin" class="mt-4">
+      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">🎟 Check In</button>
+    </form>
+  {% endif %}
+</div>
+{% endblock %}

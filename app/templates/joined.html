@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bg-white p-4 shadow rounded">
+  <h2 class="text-xl font-bold mb-2">🎉 You've joined <span class="text-blue-700">{{ event.title }}</span></h2>
+  <p class="mb-4 text-gray-600">Thanks for checking in. You can now leave your feedback below!</p>
+
+  <form method="post" action="/events/{{ event.id }}/feedback" class="space-y-4">
+    <div>
+      <label class="block mb-1 font-medium">Emoji Reaction</label>
+      <select name="emoji" required class="w-full border p-2 rounded">
+        <option value="">Select one</option>
+        <option value="👍">👍 Like</option>
+        <option value="👎">👎 Dislike</option>
+        <option value="❤️">❤️ Love it</option>
+        <option value="😮">😮 Surprised</option>
+      </select>
+    </div>
+    <div>
+      <label class="block mb-1 font-medium">Comment</label>
+      <textarea name="comment" rows="3" class="w-full border p-2 rounded" placeholder="Write something..."></textarea>
+    </div>
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Submit Feedback</button>
+  </form>
+</div>
+{% endblock %}

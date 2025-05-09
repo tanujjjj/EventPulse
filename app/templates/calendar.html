@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bg-white p-4 rounded shadow">
+  <h2 class="text-xl font-bold mb-4">📅 Your Calendar – {{ month_name }} {{ year }}</h2>
+
+  <div class="grid grid-cols-7 gap-2 text-center font-medium text-gray-600 mb-2">
+    <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+  </div>
+
+  <div class="grid grid-cols-7 gap-2 text-sm">
+    {% for cell in calendar_cells %}
+      {% if cell %}
+        <div class="border p-2 rounded bg-gray-50">
+          <div class="font-bold text-blue-700">{{ cell.day }}</div>
+          {% for event in cell.events %}
+            <div class="mt-1 p-1 rounded bg-white shadow text-left">
+              <p class="text-xs font-semibold flex items-center justify-between">
+                {{ event.title }}
+                {% if event.status == 'Live' %}
+                  <span class="ml-1 animate-pulse text-red-600">🔴</span>
+                {% endif %}
+              </p>
+              <p class="text-xs text-gray-500">{{ event.datetime.strftime('%H:%M') }}</p>
+              {% if event.show_join %}
+                <a href="/events/{{ event.id }}/live" class="block mt-1 text-center text-xs bg-blue-600 text-white px-2 py-1 rounded">Join</a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div></div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

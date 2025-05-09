@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-xl font-bold mb-4">Login to EventPulse</h2>
+<form method="post" action="/login" class="bg-white p-4 rounded shadow space-y-4">
+  <input name="username" type="email" placeholder="Email" class="w-full border p-2 rounded" required>
+  <input name="password" type="password" placeholder="Password" class="w-full border p-2 rounded" required>
+  <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded">Log In</button>
+</form>
+<p class="mt-4 text-center text-sm">
+  Don’t have an account? <a href="/register" class="text-blue-600 underline">Register here</a>
+</p>
+{% endblock %}

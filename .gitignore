@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+
+# Environment
+.env
+*.env
+eventpulse/
+
+# Logs and test cache
+*.log
+.pytest_cache/
+
+# VSCode / Editor config
+.vscode/
+.idea/

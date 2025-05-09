@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bg-white p-6 rounded shadow">
+  <h2 class="text-xl font-bold mb-4">✏️ Edit Event: {{ event.title }}</h2>
+
+  <form method="post" action="/events/{{ event.id }}/edit" class="space-y-4">
+    <input type="text" name="title" value="{{ event.title }}" required class="w-full p-2 border rounded" placeholder="Title" />
+    <textarea name="description" class="w-full p-2 border rounded" placeholder="Description">{{ event.description }}</textarea>
+    <input type="datetime-local" name="datetime" value="{{ event.datetime.strftime('%Y-%m-%dT%H:%M') }}" required class="w-full p-2 border rounded" />
+    <input type="text" name="location" value="{{ event.location }}" required class="w-full p-2 border rounded" placeholder="Location" />
+    <input type="datetime-local" name="rsvp_deadline" value="{{ event.rsvp_deadline.strftime('%Y-%m-%dT%H:%M') }}" required class="w-full p-2 border rounded" />
+    <input type="number" name="max_attendees" value="{{ event.max_attendees }}" required class="w-full p-2 border rounded" placeholder="Max Attendees" />
+    
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">💾 Update</button>
+    <a href="/dashboard" class="text-blue-600 underline ml-4">Cancel</a>
+  </form>
+</div>
+{% endblock %}

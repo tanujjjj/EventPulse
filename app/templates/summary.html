@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bg-white p-4 rounded shadow">
+  <h2 class="text-xl font-bold mb-4">📊 Summary: {{ event.title }}</h2>
+
+  <div class="mb-4">
+    <p><strong>Total RSVPs:</strong> {{ total_rsvps }}</p>
+    <p><strong>Actual Check-ins:</strong> {{ total_checkins }}</p>
+  </div>
+
+  <div class="mb-8">
+    <h3 class="font-semibold text-gray-800 mb-2">📈 Feedback Volume Over Time</h3>
+    <canvas id="volumeChart" height="100"></canvas>
+  </div>
+
+  <div class="mb-8">
+    <h3 class="font-semibold text-gray-800 mb-2">💬 Top Emoji Reactions</h3>
+    <div class="flex space-x-4 text-lg">
+      {% for emoji, count in top_emojis %}
+        <div class="bg-gray-200 px-3 py-1 rounded">{{ emoji }} × {{ count }}</div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div>
+    <h3 class="font-semibold text-gray-800 mb-2">🧠 Common Feedback Keywords</h3>
+    <div class="flex flex-wrap gap-2 text-sm">
+      {% for word in keywords %}
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">{{ word }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('volumeChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: {{ feedback_volume | map(attribute=0) | list | tojson }},
+      datasets: [{
+        label: 'Feedback Volume',
+        data: {{ feedback_volume | map(attribute=1) | list | tojson }},
+        fill: false,
+        tension: 0.3,
+        borderColor: '#2563eb'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+      beginAtZero: true,
+      ticks: {
+        precision: 0,
+        stepSize: 1
+      }
+    }
+      }
+    }
+  });
+</script>
+{% endblock %}

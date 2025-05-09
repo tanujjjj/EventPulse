@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-xl font-bold mb-4">Register for EventPulse</h2>
+<form method="post" action="/register" class="bg-white p-4 rounded shadow space-y-4">
+  <input name="email" type="email" placeholder="Email" class="w-full border p-2 rounded" required>
+  <input name="username" type="text" placeholder="Username" class="w-full border p-2 rounded" required>
+  <input name="full_name" type="text" placeholder="Full name" class="w-full border p-2 rounded">
+  <input name="password" type="password" placeholder="Password" class="w-full border p-2 rounded" required>
+  <button type="submit" class="w-full bg-green-600 text-white p-2 rounded">Register</button>
+</form>
+<p class="mt-4 text-center text-sm">
+  Already have an account? <a href="/login" class="text-green-600 underline">Login here</a>
+</p>
+{% endblock %}

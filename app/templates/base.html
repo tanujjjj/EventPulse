@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventPulse</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans min-h-screen">
+  <header class="bg-white shadow p-4 mb-6">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-700">🎯 EventPulse</h1>
+      <a href="/dashboard" class="text-blue-600 font-medium">Dashboard</a>
+    <a href="/logout" class="text-red-500 font-medium ml-4">Logout</a>
+  </div>
+  </header>
+  <main class="max-w-4xl mx-auto px-4">
+    {% block content %}{% endblock %}
+  </main>
+  
+</body>
+</html>

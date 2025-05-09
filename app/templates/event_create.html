@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-xl font-bold mb-4">Create New Event</h2>
+
+<!-- Live UTC Time Display -->
+<div class="mb-4 p-2 bg-gray-100 rounded">
+  <span class="font-medium">Current UTC Time:</span>
+  <span id="current-utc-time" class="font-mono">
+    {{ datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S') }}
+  </span>
+</div>
+
+<form method="post" action="/events/create" class="space-y-4 bg-white p-4 rounded shadow">
+    <!-- Your existing form fields -->
+    <input name="title" type="text" placeholder="Title" class="w-full border p-2 rounded" required>
+    <textarea name="description" placeholder="Description" class="w-full border p-2 rounded" required></textarea>
+    
+    <label class="block text-sm font-medium mb-1">Event Date & Time (UTC)</label>
+    <input name="datetime" type="datetime-local" class="w-full border p-2 rounded" required>
+    
+    <label class="block text-sm font-medium mb-1">RSVP Deadline (UTC)</label>
+    <input name="rsvp_deadline" type="datetime-local" class="w-full border p-2 rounded" required>
+    
+    <input name="location" type="text" placeholder="Location or URL" class="w-full border p-2 rounded" required>
+    <input name="max_attendees" type="number" placeholder="Max Attendees" class="w-full border p-2 rounded" required>
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Create Event</button>
+</form>
+
+<a href="/dashboard" class="text-blue-600 underline block mt-4">Back to Dashboard</a>
+
+<!-- Auto-updating JavaScript -->
+<script>
+  function updateUTCTime() {
+    const now = new Date();
+    const utcTime = now.toISOString().replace('T', ' ').substring(0, 19);
+    document.getElementById('current-utc-time').textContent = utcTime;
+  }
+  
+  // Update immediately and every second
+  updateUTCTime();
+  setInterval(updateUTCTime, 1000);
+</script>
+
+<style>
+  .font-mono { font-family: monospace; }
+</style>
+{% endblock %}
