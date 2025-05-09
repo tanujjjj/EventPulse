@@ -10,7 +10,6 @@ from app.api import ui
 
 app = FastAPI(title="EventPulse – Real-Time RSVP & Feedback Platform")
 
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
 # Auth: login
