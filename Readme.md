@@ -1,6 +1,6 @@
 # 🎉 EventPulse – Real-Time Event Engagement Platform
 
-EventPulse is a event management platform built using **FastAPI**. It allows hosts to create events, track attendance, collect live feedback, and view post-event insights — all in one place.
+EventPulse is a event management platform built using **FastAPI**. It allows hosts to create events, track attendance, collect live feedback, and view post-event insights all in one place.
 
 ---
 

@@ -52,7 +52,7 @@
     <ul class="mb-4 text-sm">
       {% for attendee in rsvps %}
       <li>
-        {{ attendee.user.email }} — {% if attendee.check_in_time %} ✅ Checked
+        {{ attendee.user.email }} - {% if attendee.check_in_time %} ✅ Checked
         in at {{ attendee.check_in_time.strftime('%H:%M') }} {% else %} ❌ Not
         checked in {% endif %}
       </li>
