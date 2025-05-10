@@ -11,14 +11,14 @@ from app.api import ui
 from app.db.session import engine
 from app.db.base import Base 
 
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     yield
+    await engine.dispose()
 
-app = FastAPI(title="EventPulse – Real-Time RSVP & Feedback Platform")
+app = FastAPI(lifespan=lifespan)
 
 templates = Jinja2Templates(directory="app/templates")
 
