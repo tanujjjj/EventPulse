@@ -47,7 +47,7 @@ async def login_post(
 ):
     async with httpx.AsyncClient() as client:
         response = await client.post(
-            "http://localhost:8000/auth/jwt/login",
+            "http://localhost:10000/auth/jwt/login",
             data={"username": username, "password": password},
             headers={"Content-Type": "application/x-www-form-urlencoded"},
         )
@@ -77,7 +77,7 @@ async def register_post(
 ):
     async with httpx.AsyncClient() as client:
         response = await client.post(
-            "http://localhost:8000/auth/register",
+            "http://localhost:10000/auth/register",
             json={
                 "email": email,
                 "username": username,

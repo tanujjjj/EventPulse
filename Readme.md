@@ -50,4 +50,4 @@ pip install -r requirements.txt
 
 
 # Run server
-uvicorn app.main:app --reload
+uvicorn app.main:app --port 10000 --reload
