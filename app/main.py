@@ -10,12 +10,18 @@ from app.api import events
 from app.api import ui
 from app.db.session import engine
 from app.db.base import Base 
+from app.models.registry import register_models
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    register_models()
+    
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+        print("Tables created:", list(Base.metadata.tables.keys()))
     yield
+
     await engine.dispose()
 
 app = FastAPI(lifespan=lifespan)
